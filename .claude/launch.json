@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "web-app",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": ["-c", "cd Bookmysail/apps/web && npx next dev -H 0.0.0.0 --port 4001"],
+      "port": 4001
+    }
+  ]
+}

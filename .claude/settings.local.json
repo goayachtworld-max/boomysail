@@ -1,0 +1,40 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p .claude && echo '{ *)",
+      "Bash(npm -v)",
+      "Bash(corepack enable *)",
+      "Bash(yarn -v)",
+      "Bash(npx yarn *)",
+      "Bash(npx corepack *)",
+      "Bash(npx next *)",
+      "Bash(ipconfig getifaddr *)",
+      "Bash(lsof -ti:4001)",
+      "Bash(xargs kill -9)",
+      "Bash(export DATABASE_URL=\"postgresql://neondb_owner:npg_oO7liy9GkMmb@ep-bold-wave-ar86cn4g.c-4.us-west-2.aws.neon.tech/neondb?sslmode=require\")",
+      "Bash(node import_db.js)",
+      "Bash(node ../import_db.js)",
+      "Bash(node -r @neondatabase/serverless ../import_db.js)",
+      "Bash(node -e \"const { Pool } = require\\('@neondatabase/serverless'\\); const fs = require\\('fs'\\); async function run\\(\\) { const pool = new Pool\\({ connectionString: process.env.DATABASE_URL }\\); const sql = fs.readFileSync\\('../Database/development.sql', 'utf8'\\); const statements = sql.split\\(';'\\).filter\\(s => s.trim\\(\\).length > 0\\); for \\(const s of statements\\) { if \\(!s.trim\\(\\).toUpperCase\\(\\).startsWith\\('COPY'\\)\\) { try { await pool.query\\(s\\); } catch \\(e\\) { console.error\\('Error: ' + e.message\\); } } } await pool.end\\(\\); console.log\\('Done'\\); } run\\(\\);\")",
+      "Bash(docker --version)",
+      "Bash(brew --version)",
+      "Bash(brew install *)",
+      "Bash(brew services *)",
+      "Bash(createdb neondb *)",
+      "Bash(kill -9 361)",
+      "Bash(grep \"port =\" /opt/homebrew/var/postgresql@17/postgresql.conf)",
+      "Bash(sed -i '' 's/#port = 5432/port = 5433/' /opt/homebrew/var/postgresql@17/postgresql.conf)",
+      "Bash(createdb -p 5433 neondb)",
+      "Bash(psql -p 5433 -d neondb -f Database/development.sql)",
+      "Bash(export DATABASE_URL=\"postgresql://neondb_owner:npg_ReCndmH6gY1c@ep-sparkling-rice-b4kk51wi-pooler.c-6.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require\")",
+      "Bash(node import_online_db.js)",
+      "Bash(node ../import_online_db.js)",
+      "Bash(Read /Users/sunilyadav/Downloads/Bookmysail/Database/development.sql)",
+      "Bash(node -e \"const { Pool } = require\\('@neondatabase/serverless'\\); async function run\\(\\) { const pool = new Pool\\({ connectionString: process.env.DATABASE_URL }\\); try { await pool.query\\(\\\\\"INSERT INTO site_config \\(key, value\\) VALUES \\('whatsapp_number', '8446225985'\\), \\('hero_headline', 'Private Yacht Experiences in Goa'\\), \\('hero_subtext', 'Sail the Arabian Sea in style. Book a private yacht for birthdays, sunsets, proposals, and more.'\\), \\('experiences_section_title', 'Our Experiences'\\)\\\\\"\\); console.log\\('Site config inserted'\\); } catch \\(e\\) { console.error\\(e\\); } await pool.end\\(\\); } run\\(\\);\")",
+      "Bash(node -e \"const { Pool } = require\\('@neondatabase/serverless'\\); async function run\\(\\) { const pool = new Pool\\({ connectionString: process.env.DATABASE_URL }\\); try { console.log\\('Testing connection...'\\); await pool.query\\('SELECT current_database\\(\\), current_user'\\); console.log\\('Listing tables:'\\); const res = await pool.query\\(\\\\\"SELECT tablename FROM pg_catalog.pg_tables WHERE schemaname = 'public'\\\\\"\\); console.log\\(res.rows\\); } catch \\(e\\) { console.error\\(e\\); } await pool.end\\(\\); } run\\(\\);\")",
+      "Bash(node seed_db.js)",
+      "Bash(node -e \"const { Pool } = require\\('@neondatabase/serverless'\\); async function run\\(\\) { const pool = new Pool\\({ connectionString: process.env.DATABASE_URL }\\); try { const res = await pool.query\\(\\\\\"SELECT tablename FROM pg_catalog.pg_tables WHERE schemaname = 'public'\\\\\"\\); console.log\\('Current tables:', res.rows\\); } catch \\(e\\) { console.error\\(e\\); } await pool.end\\(\\); } run\\(\\);\")",
+      "Bash(node -e \"const { Pool } = require\\('@neondatabase/serverless'\\); async function run\\(\\) { const pool = new Pool\\({ connectionString: process.env.DATABASE_URL }\\); try { const res = await pool.query\\(\\\\\"SELECT * FROM site_config WHERE key = 'admin_password'\\\\\"\\); console.log\\('Admin Password Config:', res.rows\\); } catch \\(e\\) { console.error\\(e\\); } await pool.end\\(\\); } run\\(\\);\")"
+    ]
+  }
+}
