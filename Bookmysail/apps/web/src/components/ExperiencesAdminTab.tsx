@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { Plus, Trash2, Save, X, Image as ImageIcon, Upload } from 'lucide-react';
+import { Plus, Trash2, Save, X, Image as ImageIcon, Upload, Edit2 } from 'lucide-react';
 import { toast } from 'sonner';
 
 interface Experience {

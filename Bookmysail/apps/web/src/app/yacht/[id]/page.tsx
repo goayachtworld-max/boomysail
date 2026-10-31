@@ -14,10 +14,12 @@ import {
   Play,
   Radio,
   Maximize2,
+  Share2,
 } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import QuoteModal from '@/components/QuoteModal';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
+import { toast } from 'sonner';
 
 const WhatsAppIcon = ({ cls = 'w-5 h-5' }: { cls?: string }) => (
   <svg viewBox="0 0 24 24" fill="currentColor" className={cls}>
@@ -389,6 +391,32 @@ export default function YachtDetailPage({ params }: { params: Promise<{ id: stri
     `Hi BookMySail! 👋\n\nI'd like to check availability for the *${yacht.name}*.\n\n*Package:* ${selectedLabel} — ${selectedPriceStr}\n\nPlease let me know the available dates.\n\nThank you!`
   )}`;
 
+  const shareYacht = async () => {
+    const url = `${window.location.origin}/yacht/${encodeURIComponent(yacht.id)}`;
+    const shareData = {
+      title: `${yacht.name} | BookMySail`,
+      text: `Explore ${yacht.name} with BookMySail.`,
+      url,
+    };
+
+    if (typeof navigator.share === 'function') {
+      try {
+        await navigator.share(shareData);
+      } catch (error) {
+        if (error instanceof Error && error.name === 'AbortError') return;
+        toast.error('Could not share this yacht. Please try copying the link.');
+      }
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(url);
+      toast.success('Yacht link copied. You can now share it with your client.');
+    } catch {
+      toast.error('Could not copy the yacht link. Please copy the page URL from your browser.');
+    }
+  };
+
   return (
     <div className="min-h-screen bg-white bms-page-in">
       {/* ── BACK ── */}
@@ -715,6 +743,15 @@ export default function YachtDetailPage({ params }: { params: Promise<{ id: stri
       {/* ── STICKY BOTTOM BAR ── */}
       <div className="fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-t border-gray-100 shadow-[0_-4px_32px_rgba(0,0,0,0.10)] px-4 py-4">
         <div className="max-w-5xl mx-auto flex items-center gap-3">
+          <button
+            type="button"
+            onClick={shareYacht}
+            aria-label="Share yacht link"
+            className="flex h-14 w-12 shrink-0 items-center justify-center gap-2 rounded-2xl border border-[#1A3C35]/15 text-[#1A3C35] hover:bg-[#F0F4F2] transition-colors sm:w-auto sm:px-4"
+          >
+            <Share2 className="h-5 w-5" />
+            <span className="hidden text-sm font-semibold sm:inline">Share link</span>
+          </button>
           {/* Request Quote → modal */}
           <button
             onClick={() => setQuoteOpen(true)}
